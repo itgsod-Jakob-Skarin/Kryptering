@@ -6,29 +6,14 @@ def encrypt(cleartext, offset):
     if offset == 0:
         raise ValueError('offset must not be zero')
     output = ''
-    if alphabet.index(char) + offset > 25:
-        alphabet.index(char) + offset - 26
-
     for char in cleartext:
+        char = char.lower()
         if char == ' ':
             output += ' '
+        elif alphabet.index(char) + offset > 25:
+            new_pos =+ alphabet.index(char) + offset - 26
+            output += alphabet[new_pos]
         else:
             new_pos = alphabet.index(char) + offset
             output += alphabet[new_pos]
-    return cleartext.upper
-
-
-#If pos + offset > 25:
-#pos + offset - 26:
-
-    # for letter in cleartext:
-    #     new_letter = letters.index(letter) + offset
-    #
-    # #new_cleartext = ''
-    # for new_letter
-    #     add new_letter in new_cleartext
-    #  bokstav i x, + y for ny bokstav
-    # return cleartext.upper()
-
-
-print encrypt('the quick brown fox jumps over the lazy dog', 3)
+    return output.upper()
